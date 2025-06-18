@@ -10,6 +10,7 @@ pub enum TeeSessionEnvironmentVariable {
     SignTeeChallengePrivateKey,
     SignWorkerAddress,
     WorkerHostEnvVar,
+    ResultEncryptionPublicKey,
 }
 
 impl TeeSessionEnvironmentVariable {
@@ -25,6 +26,9 @@ impl TeeSessionEnvironmentVariable {
             }
             TeeSessionEnvironmentVariable::SignWorkerAddress => "SIGN_WORKER_ADDRESS",
             TeeSessionEnvironmentVariable::WorkerHostEnvVar => "WORKER_HOST",
+            TeeSessionEnvironmentVariable::ResultEncryptionPublicKey => {
+                "RESULT_ENCRYPTION_PUBLIC_KEY"
+            }
         }
     }
 }

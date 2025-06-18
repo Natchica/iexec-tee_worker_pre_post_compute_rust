@@ -1,6 +1,7 @@
 use crate::api::result_proxy_api_client::{ResultModel, ResultProxyApiClient};
 use crate::compute::{
     computed_file::ComputedFile,
+    encryption::eventually_encrypt_result,
     errors::ReplicateStatusCause,
     utils::env_utils::{TeeSessionEnvironmentVariable, get_env_var_or_error},
 };
@@ -231,14 +232,70 @@ impl Web2ResultInterface for Web2ResultService {
             }
         };
 
-        let result_path = zip_path.clone(); // eventually_encrypt_result(&zip_path) here
+        // eventually_encrypt_result will return the original zip_path if encryption is skipped,
+        // or a new path if encryption occurred (e.g., path to an encrypted zip).
+        let result_path = match eventually_encrypt_result(&zip_path) {
+            Ok(path) => {
+                if path.is_empty() {
+                    // This case handles when encrypt_data itself returned Ok("") indicating an internal error.
+                    // We map it to an Err here to stop further processing.
+                    error!("Encryption process indicated an internal failure by returning an empty path.");
+                    return Err(ReplicateStatusCause::PostComputeEncryptionFailed);
+                }
+                // If encryption happened and produced a new path, or if encryption was skipped and original path is returned.
+                info!("Result path after potential encryption: {}", path);
+                path
+            }
+            Err(e) => {
+                // This case handles when eventually_encrypt_result itself returned an Err.
+                error!("Encryption failed: {:?}", e);
+                // You might want to map `e` to a more general error or use specific ones
+                // from `ReplicateStatusCause` if `e` is too generic or not desired directly.
+                return Err(e);
+            }
+        };
+
+        // The `result_path` now points to the file that should be uploaded,
+        // which could be the original zip or an encrypted version.
         self.upload_result(computed_file, &result_path)?; //TODO Share result link to beneficiary
 
-        // Clean up the temporary zip file
-        if let Err(e) = fs::remove_file(&zip_path) {
-            error!("Failed to remove temporary zip file {}: {}", zip_path, e);
-            // We don't return an error here as the upload was successful
-        };
+        // Clean up the initial temporary zip file.
+        // If encryption created a new file, result_path will be different from zip_path.
+        // If encryption was skipped, result_path will be the same as zip_path.
+        // In either case, removing zip_path is correct as it's the original unencrypted zip.
+        // If encryption created a new zip (e.g., "encrypted-result.zip"), that new zip is uploaded.
+        // The temporary *folder* created by encrypt_data (e.g., "encrypted-result/") should ideally
+        // be cleaned up by encrypt_data itself after it creates its own zip.
+        // If result_path IS zip_path (no encryption), it gets removed here.
+        // If result_path IS NOT zip_path (encryption happened), the original zip_path is removed here.
+        // The new encrypted file (pointed to by result_path if different) is NOT removed here,
+        // as it was the one uploaded. Its cleanup would be part of a broader workspace cleanup if needed.
+        if Path::new(&zip_path).exists() {
+            if let Err(e) = fs::remove_file(&zip_path) {
+                error!("Failed to remove temporary zip file {}: {}", zip_path, e);
+                // We don't return an error here as the upload was successful
+            } else {
+                info!("Successfully removed temporary zip file: {}", zip_path);
+            }
+        }
+
+        // If encryption occurred and result_path is different from zip_path,
+        // and if result_path points to a temporary encrypted zip that should also be cleaned up
+        // after upload, that logic would go here. However, typically the uploaded artifact
+        // might be kept temporarily until the entire post-compute process confirms completion.
+        // For now, we only explicitly clean up the original `zip_path`.
+        // Also, if `eventually_encrypt_result` produces a directory instead of a zip,
+        // `fs::remove_file` would fail. The current `encryption.rs` produces a zip.
+        // If `result_path` is the encrypted zip and it's different from `zip_path`,
+        // and `result_path` also needs cleanup, then:
+        // if result_path != zip_path && Path::new(&result_path).exists() {
+        //     if let Err(e) = fs::remove_file(&result_path) {
+        //         error!("Failed to remove temporary encrypted result file {}: {}", result_path, e);
+        //     } else {
+        //         info!("Successfully removed temporary encrypted result file: {}", result_path);
+        //     }
+        // }
+
 
         Ok(())
     }

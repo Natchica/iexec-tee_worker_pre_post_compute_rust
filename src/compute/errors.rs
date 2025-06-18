@@ -33,4 +33,10 @@ pub enum ReplicateStatusCause {
     PostComputeTooLongResultFileName,
     #[error("Worker address related environment variable is missing")]
     PostComputeWorkerAddressMissing,
+    #[error("Failed to encrypt result")]
+    PostComputeEncryptionFailed,
+    #[error("Malformed RSA public key for result encryption")]
+    PostComputeMalformedEncryptionPublicKey,
+    #[error("Result encryption public key is missing")]
+    PostComputeEncryptionPublicKeyMissing,
 }
