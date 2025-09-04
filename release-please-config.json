@@ -3,10 +3,11 @@
   "draft-pull-request": true,
   "include-component-in-tag": false,
   "include-v-in-tag": true,
-  "group-pull-request-title-pattern": "chore${scope}: release tee-worker-compute-rust ${version}",
+  "group-pull-request-title-pattern": "chore${scope}: release${component} tee-worker-compute-rust ${version}",
   "packages": {
     ".": {
       "release-type": "rust",
+      "component": "tee-worker-compute-rust",
       "extra-files": [
         "post-compute/Cargo.toml",
         "pre-compute/Cargo.toml",
