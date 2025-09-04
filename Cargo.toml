@@ -50,4 +50,4 @@ tokio = "1.45.0"
 wiremock = "0.6.3"
 
 # Shared code
-shared = { path = "src/shared" }
+shared = { path = "shared" }
