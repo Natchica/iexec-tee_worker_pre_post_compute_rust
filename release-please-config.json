@@ -14,5 +14,10 @@
         "shared/Cargo.toml"
       ]
     }
-  }
+  },
+  "plugins": [
+    {
+      "type": "cargo-workspace"
+    }
+  ]
 }
