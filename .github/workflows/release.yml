@@ -14,14 +14,7 @@ jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
-      - name: Get Token
-        id: get_token
-        uses: peter-murray/workflow-application-token-action@v4
-        with:
-          application_id: "${{ secrets.RELEASE_PLEASE_APPLICATION_ID }}"
-          application_private_key: ${{ secrets.RELEASE_PLEASE_PRIVATE_KEY }}
       - name: Run release-please
         uses: googleapis/release-please-action@v4
         with:
-          token: ${{ steps.get_token.outputs.token }}
-          target-branch: ${{ github.ref_name }}
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
