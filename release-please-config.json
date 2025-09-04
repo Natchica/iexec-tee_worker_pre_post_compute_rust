@@ -5,6 +5,18 @@
   "include-component-in-tag": false,
   "include-v-in-tag": true,
   "changelog-path": "CHANGELOG.md",
+  "release-type": "rust",
+  "packages": {
+    "compute/post": {
+      "component": "post-compute"
+    },
+    "compute/pre": {
+      "component": "pre-compute"
+    },
+    "shared": {
+      "component": "shared"
+    }
+  },
   "plugins": [
     {
       "type": "cargo-workspace",
