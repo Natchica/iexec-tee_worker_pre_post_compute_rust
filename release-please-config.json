@@ -8,7 +8,7 @@
   "plugins": [
     {
       "type": "cargo-workspace",
-      "merge": false
+      "merge": true
     },
     {
       "type": "linked-versions",
