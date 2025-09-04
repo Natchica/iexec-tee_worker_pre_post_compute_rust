@@ -10,9 +10,9 @@
       "changelog-path": "CHANGELOG.md",
       "component": "tee-worker-compute-rust",
       "extra-files": [
-        "post-compute/Cargo.toml",
-        "pre-compute/Cargo.toml",
-        "shared/Cargo.toml"
+        "src/post-compute/Cargo.toml",
+        "src/pre-compute/Cargo.toml",
+        "src/shared/Cargo.toml"
       ]
     }
   },
