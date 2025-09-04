@@ -1,25 +1,16 @@
 {
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
   "draft-pull-request": true,
-  "separate-pull-requests": false,
   "include-component-in-tag": false,
   "include-v-in-tag": true,
-  "group-pull-request-title-pattern": "chore: release tee-worker-compute-rust ${version}",
   "packages": {
     ".": {
       "release-type": "rust",
-      "changelog-path": "CHANGELOG.md",
-      "component": "tee-worker-compute-rust",
       "extra-files": [
         "post-compute/Cargo.toml",
         "pre-compute/Cargo.toml",
         "shared/Cargo.toml"
       ]
     }
-  },
-  "plugins": [
-    {
-      "type": "cargo-workspace"
-    }
-  ]
+  }
 }
