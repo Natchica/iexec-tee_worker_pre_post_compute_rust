@@ -14,11 +14,30 @@
         "compute/pre/Cargo.toml",
         "shared/Cargo.toml"
       ]
+    },
+    "compute/post": {
+      "component": "post-compute"
+    },
+    "compute/pre": {
+      "component": "pre-compute"
+    },
+    "shared": {
+      "component": "shared"
     }
   },
   "plugins": [
     {
-      "type": "cargo-workspace"
+      "type": "cargo-workspace",
+      "merge": false
+    },
+    {
+      "type": "linked-versions",
+      "groupName": "tee-worker-compute-rust",
+      "components": [
+        "post-compute",
+        "pre-compute",
+        "shared"
+      ]
     }
   ]
 }
