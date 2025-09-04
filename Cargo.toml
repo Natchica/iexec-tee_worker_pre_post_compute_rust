@@ -1,8 +1,13 @@
+[package]
+name = "tee-worker-compute-rust"
+version = "0.1.0"
+edition = "2024"
+
 [workspace]
 resolver = "3"
 members = [
-    "compute/post",
-    "compute/pre",
+    "post-compute",
+    "pre-compute",
     "shared",
 ]
 
