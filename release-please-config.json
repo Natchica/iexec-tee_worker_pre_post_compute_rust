@@ -4,7 +4,6 @@
   "separate-pull-requests": false,
   "include-component-in-tag": false,
   "include-v-in-tag": true,
-  "group-pull-request-title-pattern": "chore(main): release tee-worker-compute-rust ${version}",
   "packages": {
     ".": {
       "release-type": "rust",

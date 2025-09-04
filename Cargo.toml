@@ -6,6 +6,11 @@ members = [
     "shared",
 ]
 
+[workspace.package]
+name = "tee-worker-compute-rust"
+version = "0.1.0"
+edition = "2024"
+
 [workspace.dependencies]
 # Core dependencies
 aes = "0.8.4"
