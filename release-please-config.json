@@ -5,33 +5,15 @@
   "include-component-in-tag": false,
   "include-v-in-tag": true,
   "group-pull-request-title-pattern": "chore(main): release tee-worker-compute-rust ${version}",
-  "release-type": "rust",
   "packages": {
-    "compute/post": {
+    ".": {
       "release-type": "rust",
-      "package-name": "tee-worker-post-compute",
-      "component": "post-compute"
-    },
-    "compute/pre": {
-      "release-type": "rust",
-      "package-name": "tee-worker-pre-compute",
-      "component": "pre-compute"
-    },
-    "shared": {
-      "release-type": "rust",
-      "package-name": "shared",
-      "component": "shared"
+      "changelog-path": "CHANGELOG.md"
     }
   },
   "plugins": [
     {
-      "type": "linked-versions",
-      "groupName": "tee-worker-compute-rust",
-      "components": [
-        "post-compute",
-        "pre-compute",
-        "shared"
-      ]
+      "type": "cargo-workspace"
     }
   ]
 }
