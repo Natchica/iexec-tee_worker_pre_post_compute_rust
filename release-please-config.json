@@ -6,7 +6,6 @@
   "packages": {
     ".": {
       "release-type": "rust",
-      "component": "tee-worker-compute-rust",
       "extra-files": [
         "post-compute/Cargo.toml",
         "pre-compute/Cargo.toml",
