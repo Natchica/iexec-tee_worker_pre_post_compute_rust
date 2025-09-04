@@ -3,7 +3,6 @@
   "draft-pull-request": true,
   "include-component-in-tag": false,
   "include-v-in-tag": true,
-  "group-pull-request-title-pattern": "chore${scope}: release${component} tee-worker-compute-rust ${version}",
   "packages": {
     ".": {
       "release-type": "rust",
@@ -14,10 +13,5 @@
         "shared/Cargo.toml"
       ]
     }
-  },
-  "plugins": [
-    {
-      "type": "cargo-workspace"
-    }
-  ]
+  }
 }
