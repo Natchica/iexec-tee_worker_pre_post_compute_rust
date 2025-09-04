@@ -16,12 +16,15 @@
       ]
     },
     "compute/post": {
+      "release-type": "rust",
       "component": "post-compute"
     },
     "compute/pre": {
+      "release-type": "rust",
       "component": "pre-compute"
     },
     "shared": {
+      "release-type": "rust",
       "component": "shared"
     }
   },
