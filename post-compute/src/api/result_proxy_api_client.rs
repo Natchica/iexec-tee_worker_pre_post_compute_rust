@@ -11,6 +11,8 @@ const EMPTY_WEB3_SIG: &str = "0x000000000000000000000000000000000000000000000000
 /// that needs to be stored permanently on IPFS. It includes task identification, metadata,
 /// the actual result data, and cryptographic proofs of computation integrity.
 ///
+/// # Serialization
+///
 /// The struct is designed to be serialized to JSON for transmission to the result proxy API,
 /// with field names automatically converted to camelCase to match the expected API format.
 #[derive(Debug, Serialize, Deserialize)]
