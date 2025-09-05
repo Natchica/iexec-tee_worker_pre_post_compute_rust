@@ -3,14 +3,22 @@
   "draft-pull-request": true,
   "include-component-in-tag": false,
   "include-v-in-tag": true,
+  "group-pull-request-title-pattern": "chore(main): release tee-worker-compute-rust ${version}",
   "packages": {
-    ".": {
-      "release-type": "rust",
-      "extra-files": [
-        "post-compute/Cargo.toml",
-        "pre-compute/Cargo.toml",
-        "shared/Cargo.toml"
-      ]
+    "post-compute": {
+      "component": "post-compute"
+    },
+    "pre-compute": {
+      "component": "pre-compute"
+    },
+    "shared": {
+      "component": "shared"
     }
-  }
+  },
+  "plugins": [
+    {
+      "type": "cargo-workspace",
+      "merge": false
+    }
+  ]
 }
