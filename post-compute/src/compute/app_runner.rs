@@ -56,6 +56,7 @@ pub struct DefaultPostComputeRunner {
     worker_api_client: WorkerApiClient,
 }
 
+/// The default implementation of [`DefaultPostComputeRunner`].
 impl Default for DefaultPostComputeRunner {
     fn default() -> Self {
         Self::new()
@@ -70,6 +71,7 @@ impl DefaultPostComputeRunner {
     }
 }
 
+/// The implementation of [`PostComputeRunnerInterface`] for [`DefaultPostComputeRunner`].
 impl PostComputeRunnerInterface for DefaultPostComputeRunner {
     fn run_post_compute(&self, chain_task_id: &str) -> Result<(), ReplicateStatusCause> {
         let should_callback: bool = match get_env_var_or_error(
