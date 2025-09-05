@@ -44,6 +44,7 @@ pub struct PreComputeApp {
     pre_compute_args: Option<PreComputeArgs>,
 }
 
+/// The default implementation of [`PreComputeApp`].
 impl Default for PreComputeApp {
     fn default() -> Self {
         Self::new()
