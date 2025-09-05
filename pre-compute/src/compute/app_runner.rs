@@ -108,6 +108,7 @@ pub fn start() -> ExitMode {
     start_with_app(&mut pre_compute_app)
 }
 
+/// Tests for the pre-compute app runner
 #[cfg(test)]
 mod pre_compute_start_with_app_tests {
     use super::*;
