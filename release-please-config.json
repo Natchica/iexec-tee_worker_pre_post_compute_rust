@@ -4,6 +4,7 @@
   "include-component-in-tag": false,
   "include-v-in-tag": true,
   "group-pull-request-title-pattern": "chore(main): release tee-worker-compute-rust ${version}",
+  "release-type": "rust",
   "packages": {
     "post-compute": {
       "component": "post-compute"
