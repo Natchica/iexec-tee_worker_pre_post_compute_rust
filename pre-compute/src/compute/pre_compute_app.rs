@@ -38,6 +38,12 @@ pub trait PreComputeAppTrait {
     fn save_plain_dataset_file(&self, plain_content: &[u8]) -> Result<(), ReplicateStatusCause>;
 }
 
+/// The main application structure for handling pre-compute operations.
+///
+/// This struct manages the lifecycle of pre-compute tasks including:
+/// - Input file downloads
+/// - Encrypted dataset processing
+/// - File validation and decryption
 pub struct PreComputeApp {
     chain_task_id: Option<String>,
     pre_compute_args: Option<PreComputeArgs>,
