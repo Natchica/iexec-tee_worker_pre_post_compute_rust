@@ -45,6 +45,7 @@ impl Default for ResultModel {
     }
 }
 
+/// A client for interacting with the iExec result proxy API.
 pub struct ResultProxyApiClient {
     base_url: String,
     client: Client,
