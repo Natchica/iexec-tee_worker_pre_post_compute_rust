@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/pre-compute-v0.2.1...pre-compute-v0.2.2) (2025-09-08)
+
+
+### Bug Fixes
+
+* **docs:** correct comment formatting in app_runner.rs and pre_compute_args.rs ([6e80b08](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/6e80b08dd09cecb36b3fefb25009924019060f38))
+
 ## [0.2.1](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/pre-compute-v0.2.0...pre-compute-v0.2.1) (2025-09-08)
 
 
