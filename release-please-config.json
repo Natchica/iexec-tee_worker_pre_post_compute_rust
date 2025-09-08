@@ -3,6 +3,7 @@
   "draft-pull-request": true,
   "include-component-in-tag": false,
   "include-v-in-tag": true,
+  "separate-pull-requests": true,
   "release-type": "rust",
   "packages": {
     "post-compute": {
