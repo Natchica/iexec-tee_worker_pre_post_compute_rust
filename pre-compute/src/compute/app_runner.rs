@@ -100,7 +100,7 @@ pub fn start_with_app<A: PreComputeAppTrait>(pre_compute_app: &mut A) -> ExitMod
 ///     ExitMode::Success => println!("Pre-compute completed successfully"),
 ///     ExitMode::ReportedFailure => println!("Pre-compute failed (reported)"),
 ///     ExitMode::UnreportedFailure => println!("Pre-compute failed (unreported)"),
-///     ExitMode::InitializationFailure => println!("Pre-compute initialization failed"),
+///     ExitMode::InitializationFailure => println!("Pre-compute initialization failed")
 /// }
 /// ```
 pub fn start() -> ExitMode {
