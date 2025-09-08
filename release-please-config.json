@@ -5,19 +5,21 @@
   "include-v-in-tag": true,
   "separate-pull-requests": true,
   "release-type": "rust",
-  "pull-request-title-pattern": "chore(main): release ${component} ${version}",
   "packages": {
     "post-compute": {
       "component": "post-compute",
-      "package-name": "tee-worker-post-compute"
+      "package-name": "tee-worker-post-compute",
+      "pull-request-title-pattern": "chore(main): release ${component} ${version}"
     },
     "pre-compute": {
       "component": "pre-compute",
-      "package-name": "tee-worker-pre-compute"
+      "package-name": "tee-worker-pre-compute",
+      "pull-request-title-pattern": "chore(main): release ${component} ${version}"
     },
     "shared": {
       "component": "shared",
-      "package-name": "shared"
+      "package-name": "shared",
+      "pull-request-title-pattern": "chore(main): release ${component} ${version}"
     }
   },
   "plugins": [
