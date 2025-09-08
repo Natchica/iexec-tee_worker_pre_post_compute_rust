@@ -1,0 +1,12 @@
+[workspace]
+changelog_update = true
+git_release_enable = true
+
+[[package]]
+name = "tee-worker-post-compute"
+
+[[package]]
+name = "tee-worker-pre-compute"
+
+[[package]]
+name = "shared"
