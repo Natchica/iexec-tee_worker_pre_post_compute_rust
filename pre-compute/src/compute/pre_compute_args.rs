@@ -21,7 +21,7 @@ pub struct PreComputeArgs {
 }
 
 impl PreComputeArgs {
-    /// Constructs a validated `PreComputeArgs` instance by reading and validating environment variables
+    /// Constructs a validated `PreComputeArgs` instance by reading and validating environment variables.
     ///
     /// # Environment Variables
     /// This method reads the following environment variables:
