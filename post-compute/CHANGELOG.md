@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.1](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.4.0...v0.4.1) (2025-09-08)
+
+
+### Bug Fixes
+
+* **docs:** add missing period to comment in computed_file.rs ([e40cdc2](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/e40cdc2fb5797694448261a5421d848b98cfd520))
+* **docs:** remove trailing period from comment in computed_file.rs ([89defd2](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/89defd26376b685e0ae8db25666ff2392ca09f87))
+
 ## [0.4.0](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.3.1...v0.4.0) (2025-09-08)
 
 
