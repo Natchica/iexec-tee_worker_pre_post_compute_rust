@@ -1,5 +1,7 @@
 # Changelog
 
+## [0.3.1](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/post-compute-v0.3.0...post-compute-v0.3.1) (2025-09-08)
+
 ## [0.3.0](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/post-compute-v0.2.0...post-compute-v0.3.0) (2025-09-08)
 
 
