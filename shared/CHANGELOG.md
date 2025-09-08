@@ -7,6 +7,13 @@
 
 * **signer:** remove trailing period from documentation comment in signer.rs ([1f7fcc7](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/1f7fcc7a0b20a86899c78f4e071a84811731be78))
 
+## [0.2.1](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/shared-v0.2.0...shared-v0.2.1) (2025-09-08)
+
+
+### Bug Fixes
+
+* **signer:** remove trailing period from documentation comment in signer.rs ([1f7fcc7](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/1f7fcc7a0b20a86899c78f4e071a84811731be78))
+
 ## [0.2.0](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/shared-v0.1.0...shared-v0.2.0) (2025-09-08)
 
 
