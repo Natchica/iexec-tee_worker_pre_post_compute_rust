@@ -3,7 +3,7 @@
   "draft-pull-request": true,
   "include-component-in-tag": true,
   "include-v-in-tag": true,
-  "group-pull-request-title-pattern": "chore(main): release tee-worker packages ${version}",
+  "group-pull-request-title-pattern": "chore(main): release tee-worker-compute-rust",
   "release-type": "rust",
   "packages": {
     "post-compute": {
