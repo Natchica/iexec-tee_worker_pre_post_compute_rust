@@ -1,22 +1,12 @@
 {
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
   "draft-pull-request": true,
-  "include-component-in-tag": true,
+  "include-component-in-tag": false,
   "include-v-in-tag": true,
-  "group-pull-request-title-pattern": "chore(main): release tee-worker-compute-rust",
-  "release-type": "rust",
   "packages": {
-    "post-compute": {
-      "component": "post-compute",
-      "package-name": "tee-worker-post-compute-rust"
-    },
-    "pre-compute": {
-      "component": "pre-compute",
-      "package-name": "tee-worker-pre-compute-rust"
-    },
-    "shared": {
-      "component": "shared",
-      "package-name": "tee-worker-compute-rust-shared"
+    ".": {
+      "release-type": "rust",
+      "changelog-path": "CHANGELOG.md"
     }
   },
   "plugins": [
