@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/post-compute-v0.2.0...post-compute-v0.3.0) (2025-09-08)
+
+
+### Features
+
+* **dropbox:** update documentation for DropboxService to remove trailing period ([54f8691](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/54f8691cd534f8b1d9572645e54993c1c668a75d))
+
 ## [0.2.0](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/post-compute-v0.1.0...post-compute-v0.2.0) (2025-09-08)
 
 
