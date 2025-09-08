@@ -103,11 +103,9 @@ mod tests {
     const MESSAGE_HASH: &str = "0x5cd0e9c5180dd35e2b8285d0db4ded193a9b4be6fbfab90cbadccecab130acad";
     const EXPECTED_SIGNATURE: &str = "0xfcc6bce5eb04284c2eb1ed14405b943574343b1abda33628fbf94a374b18dd16541c6ebf63c6943d8643ff03c7aa17f1cb17b0a8d297d0fd95fc914bdd0e85f81b";
 
-    // ========== UNIFIED SIGNATURE TESTS ==========
-
     #[test]
     fn sign_enclave_challenge_for_stage_returns_correct_signature_when_pre_compute_stage_and_valid_inputs_provided()
-     {
+    {
         let result = sign_enclave_challenge_for_stage(
             ComputeStage::PreCompute,
             MESSAGE_HASH,
@@ -126,7 +124,7 @@ mod tests {
 
     #[test]
     fn sign_enclave_challenge_for_stage_returns_correct_signature_when_post_compute_stage_and_valid_inputs_provided()
-     {
+    {
         let result = sign_enclave_challenge_for_stage(
             ComputeStage::PostCompute,
             MESSAGE_HASH,
@@ -145,7 +143,7 @@ mod tests {
 
     #[test]
     fn sign_enclave_challenge_for_stage_returns_error_when_pre_compute_stage_and_invalid_key_provided()
-     {
+    {
         let result = sign_enclave_challenge_for_stage(
             ComputeStage::PreCompute,
             MESSAGE_HASH,
@@ -164,7 +162,7 @@ mod tests {
 
     #[test]
     fn sign_enclave_challenge_for_stage_returns_error_when_post_compute_stage_and_invalid_key_provided()
-     {
+    {
         let result = sign_enclave_challenge_for_stage(
             ComputeStage::PostCompute,
             MESSAGE_HASH,
@@ -181,11 +179,10 @@ mod tests {
         );
     }
 
-    // ========== UNIFIED CHALLENGE TESTS ==========
 
     #[test]
     fn get_challenge_for_stage_returns_correct_signature_when_pre_compute_stage_and_valid_env_vars_provided()
-     {
+    {
         with_vars(
             vec![
                 ("SIGN_WORKER_ADDRESS", Some(WORKER_ADDRESS)),
@@ -220,7 +217,7 @@ mod tests {
 
     #[test]
     fn get_challenge_for_stage_returns_correct_signature_when_post_compute_stage_and_valid_env_vars_provided()
-     {
+    {
         with_vars(
             vec![
                 (
@@ -258,7 +255,7 @@ mod tests {
 
     #[test]
     fn get_challenge_for_stage_returns_worker_address_missing_error_when_pre_compute_stage_and_worker_address_env_var_missing()
-     {
+    {
         with_vars(
             vec![(
                 "SIGN_TEE_CHALLENGE_PRIVATE_KEY",
@@ -281,7 +278,7 @@ mod tests {
 
     #[test]
     fn get_challenge_for_stage_returns_worker_address_missing_error_when_post_compute_stage_and_worker_address_env_var_missing()
-     {
+    {
         with_vars(
             vec![(
                 TeeSessionEnvironmentVariable::SignTeeChallengePrivateKey.name(),
@@ -304,7 +301,7 @@ mod tests {
 
     #[test]
     fn get_challenge_for_stage_returns_private_key_missing_error_when_pre_compute_stage_and_private_key_env_var_missing()
-     {
+    {
         with_vars(vec![("SIGN_WORKER_ADDRESS", Some(WORKER_ADDRESS))], || {
             let result = get_challenge_for_stage(ComputeStage::PreCompute, CHAIN_TASK_ID);
             assert!(
@@ -321,7 +318,7 @@ mod tests {
 
     #[test]
     fn get_challenge_for_stage_returns_private_key_missing_error_when_post_compute_stage_and_private_key_env_var_missing()
-     {
+    {
         with_vars(
             vec![(
                 TeeSessionEnvironmentVariable::SignWorkerAddress.name(),
@@ -344,7 +341,7 @@ mod tests {
 
     #[test]
     fn get_challenge_for_stage_returns_worker_address_missing_error_when_pre_compute_stage_and_both_env_vars_missing()
-     {
+    {
         with_vars(Vec::<(&str, Option<&str>)>::new(), || {
             let result = get_challenge_for_stage(ComputeStage::PreCompute, CHAIN_TASK_ID);
             assert!(
@@ -361,7 +358,7 @@ mod tests {
 
     #[test]
     fn get_challenge_for_stage_returns_worker_address_missing_error_when_post_compute_stage_and_both_env_vars_missing()
-     {
+    {
         with_vars(Vec::<(&str, Option<&str>)>::new(), || {
             let result = get_challenge_for_stage(ComputeStage::PostCompute, CHAIN_TASK_ID);
             assert!(
@@ -375,8 +372,6 @@ mod tests {
             );
         });
     }
-
-    // ========== CONSISTENCY TESTS ==========
 
     #[test]
     fn sign_enclave_challenge_for_stage_produces_identical_signatures_when_same_inputs_provided_across_different_stages()
@@ -408,7 +403,7 @@ mod tests {
 
     #[test]
     fn get_challenge_for_stage_produces_deterministic_results_when_same_inputs_provided_multiple_times()
-     {
+    {
         // Challenge generation should be deterministic for same inputs
         with_vars(
             vec![
