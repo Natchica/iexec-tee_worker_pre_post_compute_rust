@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.4.0...v0.4.1) (2025-09-08)
+
+
+### Bug Fixes
+
+* **docs:** add missing period to comment in pre_compute_args.rs ([0012fa0](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/0012fa0dbd65fb395c4b1c942046b398c9f2074c))
+
 ## [0.4.0](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.3.0...v0.4.0) (2025-09-08)
 
 
