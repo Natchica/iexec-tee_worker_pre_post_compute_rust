@@ -8,8 +8,8 @@ use crate::{
 use alloy_signer::{Signature, SignerSync};
 use alloy_signer_local::PrivateKeySigner;
 
-/// Signs a message hash using the provided enclave challenge private key.
-/// Generic implementation that works for both pre and post compute stages.
+/// Signs a message hash using the provided enclave challenge private key
+/// Generic implementation that works for both pre and post compute stages
 ///
 /// # Arguments
 ///
