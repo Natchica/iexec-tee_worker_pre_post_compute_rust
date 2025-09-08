@@ -84,7 +84,7 @@ pub fn start_with_app<A: PreComputeAppTrait>(pre_compute_app: &mut A) -> ExitMod
     }
 }
 
-/// Starts the pre-compute process using the [`PreComputeApp`].
+/// Starts the pre-compute process using the [`PreComputeApp`]
 ///
 /// This is a convenience function that creates a [`PreComputeApp`]
 /// and passes it to [`start_with_app`].
