@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.4.0...v0.4.1) (2025-09-08)
+
+
+### Bug Fixes
+
+* **docs:** add missing period to comment in signer.rs ([48298e7](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/48298e7b544c54bdf9191ab9ac858c5a856cb32e))
+
 ## [0.4.0](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.3.0...v0.4.0) (2025-09-08)
 
 
