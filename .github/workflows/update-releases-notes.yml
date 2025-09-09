@@ -38,41 +38,61 @@ jobs:
           PR_NUMBER="${{ steps.find_pr.outputs.pr_number }}"
           PR_BODY=$(gh pr view "$PR_NUMBER" --json body -q .body)
 
-          # Save PR_BODY to a file to avoid issues with multi-line strings
           echo "$PR_BODY" > pr_body.md
+          echo "[DEBUG] --- pr_body.md ---"
+          cat pr_body.md
+          echo "[DEBUG] --- end pr_body.md ---"
 
-          # 1. Extract the first version header with date and link (e.g. [0.3.3](...) (2025-09-09))
-          VERSION_HEADER=$(grep -m1 -E '^\[[0-9]+\.[0-9]+\.[0-9]+\]\(.*\) \([0-9]{4}-[0-9]{2}-[0-9]{2}\)$' pr_body.md)
+          # 1. Extract the first version header with date and link
+          VERSION_HEADER=$(grep -m1 -E '^\[[0-9]+\.[0-9]+\.[0-9]+\]\(.*\) \([0-9]{4}-[0-9]{2}-[0-9]{2}\)$' pr_body.md || true)
           [ -z "$VERSION_HEADER" ] && VERSION_HEADER="## Release"
 
+          echo "[DEBUG] VERSION_HEADER: $VERSION_HEADER"
+
           # 2. Use awk to split into package blocks (by version header, exclude the header line itself)
+          rm -f block*.md || true
           awk '
             BEGIN {blocknum=0;}
-            /^\[[0-9]+\.[0-9]+\.[0-9]+\]\(.*\) \([0-9]{4}-[0-9]{2}-[0-9]{2}\)$/ {blocknum++; next}
+            /^\[[0-9]+\.[0-9]+\.[0-9]+\]\(.*\) \([0-9]{4}-[0-9]{2}-[0-9]{2}\}$/ {blocknum++; next}
             blocknum>0 {print > ("block" blocknum ".md")}
           ' pr_body.md
 
-          # 3. Compose the lists content for each package
-          rm -f lists.md
+          echo "[DEBUG] block files:"
+          ls -l block*.md || echo "No blocks found"
+
+          rm -f lists.md || true
+
+          shopt -s nullglob
           for f in block*.md; do
-            if [ ! -s "$f" ]; then continue; fi
-            # Extract package name from first bolded entry in a list item (e.g. - **package_name:** ...)
-            PKG=$(grep -m1 -oP '^\s*[*-]\s+\*\*\K[^*:]+' "$f" | sed 's/_/ /g')
+            if [ ! -s "$f" ]; then
+              echo "[DEBUG] Skipping empty $f"
+              continue
+            fi
+            echo "[DEBUG] Processing $f:"
+            cat "$f"
+            # Try to extract package name from first bolded entry in a list item
+            PKG=$(grep -m1 -oP '^\s*[*-]\s+\*\*\K[^*:]+' "$f" | sed 's/_/ /g' || true)
             [ -z "$PKG" ] && PKG="unknown package"
+            echo "[DEBUG] PKG: $PKG"
             echo "" >> lists.md
             echo "> $PKG" >> lists.md
             cat "$f" >> lists.md
             echo "" >> lists.md
           done
+          shopt -u nullglob
 
-          # 4. Compose the final release note file
-          {
-            echo "$VERSION_HEADER"
-            echo "---"
-            cat lists.md
-          } > release_note.md
+          if [ ! -f lists.md ]; then
+            echo "[DEBUG] No lists.md generated; exiting early"
+            echo "$VERSION_HEADER" > release_note.md
+          else
+            {
+              echo "$VERSION_HEADER"
+              echo "---"
+              cat lists.md
+            } > release_note.md
+          fi
 
-          echo "====== Final release note ======"
+          echo "[DEBUG] ====== Final release note ======"
           cat release_note.md
 
           echo "release_note<<EOF" >> $GITHUB_OUTPUT
