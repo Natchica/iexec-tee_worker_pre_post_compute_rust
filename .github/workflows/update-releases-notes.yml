@@ -3,13 +3,13 @@ name: Update Release Notes
 on:
   push:
     tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+'
+      - "v[0-9]+.[0-9]+.[0-9]+"
 
 jobs:
   parse-release-notes:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # Needed for gh release edit
+      contents: write # Needed for gh release edit
 
     steps:
       - name: Checkout repository
@@ -68,17 +68,41 @@ jobs:
           while IFS= read -r -d '' block; do
             c=$((c+1))
             echo "$block" > "block${c}.md"
-            CONTEXT=$(grep -m1 -oP '^\s*[*-]\s+\*\*\K[^*:]+' "block${c}.md" | head -1)
+            CONTEXT=$(grep -m1 -oP '^\s*[*-]\s+\*\*\K[^*:]+' "block${c}.md" | head -1 || true)
             PKG_DISPLAY="$CONTEXT"
             if [ -n "$CONTEXT" ]; then
+              echo "DEBUG: Found context '$CONTEXT' in block ${c}"
               for member_path in "${MEMBER_PATHS[@]}"; do
-                if find "$member_path" -type f -name "$CONTEXT.*" | grep -q .; then
+                if find "$member_path" -type f -name "$CONTEXT.*" 2>/dev/null | grep -q .; then
                   PKG_DISPLAY="${MEMBER_PATH_TO_NAME[$member_path]}"
+                  echo "DEBUG: Mapped context '$CONTEXT' to package '$PKG_DISPLAY'"
                   break
                 fi
               done
+            else
+              echo "ERROR: No context (scope) found in block ${c}!"
+              echo "ERROR: Block content:"
+              cat "block${c}.md"
+              echo "ERROR: This indicates a commit was made without following Conventional Commits format"
+              echo "ERROR: Expected pattern: '* **context**: description' but found none"
+              echo "ERROR: Be sure to use Conventional Commits with scope: type(scope): description"
+              echo "ERROR: Examples:"
+              echo "ERROR:   fix(computed_file): correct documentation"
+              echo "ERROR:   feat(signer): add new encryption method"
+              echo "ERROR: Valid scopes should match filenames in workspace members"
+              exit 1
             fi
-            [ -z "$PKG_DISPLAY" ] && PKG_DISPLAY="unknown package"
+            if [ -z "$PKG_DISPLAY" ]; then
+              echo "ERROR: Conventional Commit scope '$CONTEXT' could not be mapped to any workspace package!"
+              echo "ERROR: Available workspace members and valid scopes:"
+              for member_path in "${MEMBER_PATHS[@]}"; do
+                echo "  - $member_path -> ${MEMBER_PATH_TO_NAME[$member_path]}"
+              done
+              echo "ERROR: The scope '$CONTEXT' must match a filename in one of the above directories"
+              echo "ERROR: Use: type($CONTEXT): description where $CONTEXT corresponds to a file being modified"
+              exit 1
+            fi
+            echo "DEBUG: Using package display name: '$PKG_DISPLAY'"
             echo "<details><summary>$PKG_DISPLAY</summary>" >> lists.md
             echo "" >> lists.md
             awk '/^### /{show=1; next} show && /^[*-] /{sub(/^[*-]/,"-"); print $0} /^<\/details>/{show=0}' "block${c}.md" >> lists.md
