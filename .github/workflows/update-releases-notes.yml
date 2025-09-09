@@ -29,7 +29,7 @@ jobs:
           PR_NUMBER=$(gh pr list --state merged --label "autorelease: tagged" --json number,mergedAt,headRefName --jq '[.[] | select(.headRefName | test("^release-please--branches--main"))] | sort_by(.mergedAt) | last.number')
           echo "pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
 
-      - name: Get PR body and extract markdown lists only
+      - name: Get PR body and format for all packages
         id: get_lists
         env:
           GH_TOKEN: ${{ secrets.RELEASE_PLEASE_TOKEN }}
@@ -37,32 +37,65 @@ jobs:
           PR_NUMBER="${{ steps.find_pr.outputs.pr_number }}"
           PR_BODY=$(gh pr view "$PR_NUMBER" --json body -q .body)
 
-          # Extract only the markdown lists (sections starting with ## or ### and their bullet points)
-          # This sed+awk+grep block will extract all sections starting with '##' or '###' and including bullet points
-          # and ignore everything before the first '##' and after the last bullet point.
-          echo "$PR_BODY" | awk '
-            BEGIN { in_section=0 }
-            /^## / || /^### / { in_section=1; print ""; print $0; next }
-            /^[*-] / && in_section { print $0; next }
-            (in_section && NF == 0) { print ""; next }
-            (!/^[#*-]/) { next }
-          ' | sed '/^$/N;/^\n$/D' > lists.md
+          # Extract the first version header with date and link (e.g.: [0.3.3](...) (2025-09-09))
+          VERSION_HEADER=$(echo "$PR_BODY" | grep -m1 -E '^\[[0-9]+\.[0-9]+\.[0-9]+\]\(.*\) \([0-9]{4}-[0-9]{2}-[0-9]{2}\)$')
 
-          # Optionally, remove empty lines at the beginning/end
-          sed -i '/./,$!d' lists.md
-          sed -i ':a;/^\n*$/{$d;N;};/\n$/d' lists.md
+          # If not found, fallback to a generic header
+          if [ -z "$VERSION_HEADER" ]; then
+            VERSION_HEADER="## Release"
+          fi
+
+          # Now, for each package section, extract the package name and its markdown list
+          # We'll assume each section starts with the version header, then has bugfix/features sections, etc.
+          # and somewhere in each list, the package name appears as bold or in the list item prefix.
+
+          # This awk script grabs each block starting with a version header, and for each:
+          # - Extracts the package name from the first bold item (**package_name:** or **package_name**:)
+          # - Outputs the block as:
+          #   > package_name
+          #   (then the block content, minus the version header itself)
+
+          echo "$PR_BODY" | awk '
+            BEGIN { block=""; inblock=0; }
+            /^\[[0-9]+\.[0-9]+\.[0-9]+\]\(.*\) \([0-9]{4}-[0-9]{2}-[0-9]{2}\)$/ {
+              if (inblock && block != "") {
+                print block
+                block=""
+              }
+              inblock=1
+              next
+            }
+            inblock { block=block $0 "\n" }
+            END { if (inblock && block != "") print block }
+          ' | while read -r block; do
+              # Find the package name from the first bold entry in a list item
+              PKG=$(echo "$block" | grep -m1 -oP '\*\*\K[^*:]+' | sed 's/_/ /g')
+              [ -z "$PKG" ] && PKG="unknown package"
+              # Output blockquote and the block itself
+              echo ""
+              echo "> $PKG"
+              echo "$block" | sed '/^$/d'  # remove blank line at top
+              echo ""
+            done > lists.md
+
+          # Compose the final release note file
+          {
+            echo "$VERSION_HEADER"
+            echo "---"
+            cat lists.md
+          } > release_note.md
 
           # Print for debug
-          echo "====== Extracted lists ======"
-          cat lists.md
+          echo "====== Final release note ======"
+          cat release_note.md
 
           # Output for next step
-          echo "lists<<EOF" >> $GITHUB_OUTPUT
-          cat lists.md >> $GITHUB_OUTPUT
+          echo "release_note<<EOF" >> $GITHUB_OUTPUT
+          cat release_note.md >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Update release notes for tag
         env:
           GH_TOKEN: ${{ secrets.RELEASE_PLEASE_TOKEN }}
         run: |
-          gh release edit "${GITHUB_REF#refs/tags/}" --notes "${{ steps.get_lists.outputs.lists }}"
+          gh release edit "${GITHUB_REF#refs/tags/}" --notes "${{ steps.get_lists.outputs.release_note }}"
