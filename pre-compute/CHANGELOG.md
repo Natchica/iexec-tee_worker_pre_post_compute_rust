@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.4](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.3.3...v0.3.4) (2025-09-09)
+
+
+### Bug Fixes
+
+* **pre_compute_args:** remove trailing period from documentation comment ([849527b](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/849527bc9fd73f77b115c1c80c79c79fb4f77469))
+
 ## [0.3.3](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.3.2...v0.3.3) (2025-09-09)
 
 

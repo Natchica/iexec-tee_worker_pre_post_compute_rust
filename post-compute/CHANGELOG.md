@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.4](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.3.3...v0.3.4) (2025-09-09)
+
+
+### Bug Fixes
+
+* **computed_file:** correct documentation comment for computed.json structure ([44f2af3](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/44f2af3be31514117fa6e8308e1626049407074c))
+
 ## [0.3.3](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.3.2...v0.3.3) (2025-09-09)
 
 
