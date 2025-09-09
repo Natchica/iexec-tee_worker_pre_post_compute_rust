@@ -193,7 +193,7 @@ pub fn download_from_url(url: &str) -> Option<Vec<u8>> {
     }
 }
 
-/// Tests for the file utilities
+/// Tests for the file utilities.
 #[cfg(test)]
 mod tests {
     use super::*;
