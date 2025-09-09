@@ -1,13 +1,5 @@
 # Changelog
 
-## [0.3.3](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.3.2...v0.3.3) (2025-09-09)
-
-
-### Bug Fixes
-
-* **pre_compute_args:** add missing trailing period in documentation comment for PreComputeArgs struct ([f0aa6c2](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/f0aa6c22776cfe7d67b4d751c18c6f4cd1ae6323))
-* **pre_compute_args:** correct documentation by adding missing period at the end of a comment ([d64edbc](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/d64edbce5ec5e76af139fdcc9484fbc7b4629bd0))
-
 ## [0.3.2](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.3.1...v0.3.2) (2025-09-09)
 
 
