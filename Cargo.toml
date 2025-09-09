@@ -14,8 +14,8 @@ default-members = [
 [workspace.dependencies]
 # Core dependencies
 aes = "0.8.4"
-alloy-signer = "0.15.9"
-alloy-signer-local = "0.15.9"
+alloy-signer = "1.0.30"
+alloy-signer-local = "1.0.30"
 base64 = "0.22.1"
 cbc = { version = "0.1.2", features = ["alloc"] }
 env_logger = "0.11.8"
