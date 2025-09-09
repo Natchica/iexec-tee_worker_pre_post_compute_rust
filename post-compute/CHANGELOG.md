@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.3.6...v0.4.0) (2025-09-09)
+
+
+### Features
+
+* **dropbox:** remove trailing period from documentation comment in Dropbox module ([7f526b8](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/7f526b8841df251d49aa8be68b3bbfd402c38c6f))
+
 ## [0.3.6](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.3.5...v0.3.6) (2025-09-09)
 
 
