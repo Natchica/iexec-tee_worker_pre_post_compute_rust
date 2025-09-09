@@ -3,7 +3,7 @@ name: Update Release Notes from PR
 on:
   push:
     tags:
-      - "v*.*.*"
+      - "v*"
 
 permissions:
   contents: write
@@ -29,19 +29,40 @@ jobs:
           PR_NUMBER=$(gh pr list --state merged --label "autorelease: tagged" --json number,mergedAt,headRefName --jq '[.[] | select(.headRefName | test("^release-please--branches--main"))] | sort_by(.mergedAt) | last.number')
           echo "pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
 
-      - name: Get PR body
-        id: get_body
+      - name: Get PR body and extract markdown lists only
+        id: get_lists
         env:
           GH_TOKEN: ${{ secrets.RELEASE_PLEASE_TOKEN }}
         run: |
           PR_NUMBER="${{ steps.find_pr.outputs.pr_number }}"
           PR_BODY=$(gh pr view "$PR_NUMBER" --json body -q .body)
-          echo "pr_body<<EOF" >> $GITHUB_OUTPUT
-          echo "$PR_BODY" >> $GITHUB_OUTPUT
+
+          # Extract only the markdown lists (sections starting with ## or ### and their bullet points)
+          # This sed+awk+grep block will extract all sections starting with '##' or '###' and including bullet points
+          # and ignore everything before the first '##' and after the last bullet point.
+          echo "$PR_BODY" | awk '
+            BEGIN { in_section=0 }
+            /^## / || /^### / { in_section=1; print ""; print $0; next }
+            /^[*-] / && in_section { print $0; next }
+            (in_section && NF == 0) { print ""; next }
+            (!/^[#*-]/) { next }
+          ' | sed '/^$/N;/^\n$/D' > lists.md
+
+          # Optionally, remove empty lines at the beginning/end
+          sed -i '/./,$!d' lists.md
+          sed -i ':a;/^\n*$/{$d;N;};/\n$/d' lists.md
+
+          # Print for debug
+          echo "====== Extracted lists ======"
+          cat lists.md
+
+          # Output for next step
+          echo "lists<<EOF" >> $GITHUB_OUTPUT
+          cat lists.md >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Update release notes for tag
         env:
           GH_TOKEN: ${{ secrets.RELEASE_PLEASE_TOKEN }}
         run: |
-          gh release edit "${GITHUB_REF#refs/tags/}" --notes "${{ steps.get_body.outputs.pr_body }}"
+          gh release edit "${GITHUB_REF#refs/tags/}" --notes "${{ steps.get_lists.outputs.lists }}"
