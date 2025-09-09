@@ -35,7 +35,7 @@ pub fn sign_enclave_challenge_for_stage(
     let signer: PrivateKeySigner = enclave_challenge_private_key
         .parse::<PrivateKeySigner>()
         .map_err(|_| {
-            // Use the appropriate error for the stage - note the special case for PostCompute.
+            // Use the appropriate error for the stage - note the special case for PostCompute
             match stage {
                 ComputeStage::PreCompute => ReplicateStatusCause::PreComputeWorkerAddressMissing,
                 ComputeStage::PostCompute => {
