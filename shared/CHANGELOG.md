@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.2.1...v0.3.0) (2025-09-09)
+
+
+### Features
+
+* **signer:** remove trailing period from documentation comment in sign_enclave_challenge_for_stage function ([feeb61b](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/feeb61bcca907c19355138efc25503ebcef865ca))
+
 ## [0.2.1](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.2.0...v0.2.1) (2025-09-09)
 
 

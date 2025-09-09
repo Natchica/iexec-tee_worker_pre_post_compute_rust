@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.2.1...v0.3.0) (2025-09-09)
+
+
+### Features
+
+* **computed_file:** remove trailing period from documentation comment for computed.json file ([4792f36](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/4792f36bd8278a90aefe6aa2015dfcbb7f38a38e))
+
 ## [0.3.0](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.2.0...v0.3.0) (2025-09-09)
 
 
