@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
 
-/// Compute stage context for internal error handling
+/// Compute stage context for internal error handling.
 #[derive(Debug, PartialEq, Clone, Copy)]
 pub enum ComputeStage {
     PreCompute,
