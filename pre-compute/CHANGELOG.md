@@ -1,36 +1,5 @@
 # Changelog
 
-## [0.5.0](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.4.0...v0.5.0) (2025-09-09)
-
-
-### Features
-
-* add missing period to documentation comment for PreComputeArgs structure ([90ad75a](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/90ad75a1559b8bc91ae224c3201752eeb956b4fe))
-* **docs:** add missing periods to comments in computed_file.rs, pre_compute_args.rs, and signer.rs ([33e56be](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/33e56bef369549c1d1a8dcb5d01debd8fd9a9bb0))
-* **file_utils, pre_compute_app:** add tests and default implementation documentation ([84c8737](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/84c873768fc807b2a0ee2922738b8f4c84cc7fd6))
-* **pre_compute_args:** add missing trailing period in documentation comment for PreComputeArgs struct ([e14e95e](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/e14e95e1f4b474f07e263454cbc4fc69d102fdeb))
-* **pre-compute:** add tests for the pre-compute app runner ([9147da1](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/9147da1d9732ed24e2fc71c62146aa89904bc745))
-* **pre-compute:** remove redundant documentation from PreComputeApp struct ([7c66b09](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/7c66b09a0b754abdcb59db931bd77542e0a9e470))
-
-
-### Bug Fixes
-
-* add missing period to documentation comment for file utilities ([c3a696b](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/c3a696b94837bc3331fcf9cf1fd666161390446e))
-* **app_runner:** remove trailing period from documentation comment ([39e1253](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/39e1253a4eef5da91bc03840a4a68ddaf632c77e))
-* correct trailing period in documentation comment for PreComputeArgs struct ([224c06c](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/224c06cbec830dcf1236a2ed55d3e60cfb0f6982))
-* **docs:** add missing period to comment in pre_compute_args.rs ([0012fa0](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/0012fa0dbd65fb395c4b1c942046b398c9f2074c))
-* **docs:** add missing period to comments in computed_file.rs and pre_compute_args.rs ([b236e8b](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/b236e8bfb7c9f47680c0bfedf24666e35e2cc802))
-* **docs:** correct comment formatting in app_runner.rs and pre_compute_args.rs ([6e80b08](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/6e80b08dd09cecb36b3fefb25009924019060f38))
-* **pre_compute_args:** add missing trailing period in documentation comment for PreComputeArgs struct ([f0aa6c2](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/f0aa6c22776cfe7d67b4d751c18c6f4cd1ae6323))
-* **pre_compute_args:** add missing trailing period in documentation comment for PreComputeArgs struct ([174689d](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/174689dc3755114c16e8b2a5fa006fc3bd985cf6))
-* **pre_compute_args:** add missing trailing period in documentation comment for PreComputeArgs struct ([0ca1700](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/0ca1700aba7b98ef729fd93ac5f8794679f5174c))
-* **pre_compute_args:** correct documentation by adding missing period at the end of a comment ([d64edbc](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/d64edbce5ec5e76af139fdcc9484fbc7b4629bd0))
-* **pre_compute_args:** remove trailing period from documentation comment ([849527b](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/849527bc9fd73f77b115c1c80c79c79fb4f77469))
-* **pre_compute_args:** remove trailing period from documentation comment ([b9e32d7](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/b9e32d7a54e5b18806750b430d1f24ddfde77f83))
-* **pre_compute_args:** remove trailing period from documentation comment for PreComputeArgs structure ([b64e107](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/b64e107146c19ddcaa4d713a75ef95fed68dfd41))
-* remove trailing period in documentation comment for PreComputeArgs struct ([8b6831c](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/8b6831cbf97bb834b960b32b44bd3d1038f55d08))
-* update documentation comment for PreComputeArgs struct ([a3384b0](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/a3384b038111a86fc36c2eef5749ce853c82204d))
-
 ## [0.4.0](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.3.5...v0.4.0) (2025-09-09)
 
 
