@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.5](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.3.4...v0.3.5) (2025-09-09)
+
+
+### Bug Fixes
+
+* add missing period to challenge signature documentation comment ([71a4a47](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/71a4a477fa371d73203f28e12982141608e24f1c))
+* add missing period to documentation comment for ComputeStage enum ([91166b6](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/91166b64f54a893e69531e080bf53e4ec98bac4c))
+
 ## [0.3.4](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.3.3...v0.3.4) (2025-09-09)
 
 

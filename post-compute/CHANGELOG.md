@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.5](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.3.4...v0.3.5) (2025-09-09)
+
+
+### Bug Fixes
+
+* add missing period to documentation comment for DropboxService ([676cdcd](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/676cdcd65ba9ebf36d4c3efe9c8edbbc9946819f))
+
 ## [0.3.4](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.3.3...v0.3.4) (2025-09-09)
 
 
