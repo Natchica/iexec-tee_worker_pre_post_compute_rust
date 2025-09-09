@@ -51,7 +51,7 @@ pub fn sign_enclave_challenge_for_stage(
     Ok(signature.to_string())
 }
 
-/// Generates a challenge signature for a given chain task ID
+/// Generates a challenge signature for a given chain task ID.
 /// Generic implementation that works for both pre and post compute stages.
 ///
 /// # Arguments
