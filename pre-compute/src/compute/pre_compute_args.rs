@@ -6,7 +6,7 @@ use shared::{
 /// Represents parameters required for pre-compute tasks in a Trusted Execution Environment (TEE).
 ///
 /// This structure aggregates configuration parameters from environment variables and task context,
-/// providing a validated interface for subsequent computation phases
+/// providing a validated interface for subsequent computation phases.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct PreComputeArgs {
     pub output_dir: String,
