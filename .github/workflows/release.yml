@@ -37,3 +37,24 @@ jobs:
           echo "Tag: ${{ steps.release.outputs.tag_name }}"
           echo "SHA: ${{ steps.release.outputs.sha }}"
           echo "Upload URL: ${{ steps.release.outputs.upload_url }}"
+
+      - name: Update GitHub Release notes with all changelogs from PR body
+        if: ${{ steps.release.outputs.release_created }}
+        env:
+          GH_TOKEN: ${{ secrets.RELEASE_PLEASE_TOKEN }}
+        run: |
+          # Install GitHub CLI
+          sudo apt-get update && sudo apt-get install -y gh jq
+
+          # Get the latest merged PR with the autorelease: tagged label
+          PR_NUMBER=$(gh pr list --state merged --label "autorelease: tagged" --json number,mergedAt --jq 'sort_by(.mergedAt) | last.number')
+          if [ -z "$PR_NUMBER" ]; then
+            echo "No merged release PR found."
+            exit 1
+          fi
+
+          # Get the PR body
+          PR_BODY=$(gh pr view "$PR_NUMBER" --json body -q .body)
+
+          # Update the release notes for the new tag
+          gh release edit "${{ steps.release.outputs.tag_name }}" --notes "$PR_BODY"
