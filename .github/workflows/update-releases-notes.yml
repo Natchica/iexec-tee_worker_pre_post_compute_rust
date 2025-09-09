@@ -37,46 +37,39 @@ jobs:
           PR_NUMBER="${{ steps.find_pr.outputs.pr_number }}"
           PR_BODY=$(gh pr view "$PR_NUMBER" --json body -q .body)
 
-          # Extract the first version header with date and link (e.g.: [0.3.3](...) (2025-09-09))
-          VERSION_HEADER=$(echo "$PR_BODY" | grep -m1 -E '^\[[0-9]+\.[0-9]+\.[0-9]+\]\(.*\) \([0-9]{4}-[0-9]{2}-[0-9]{2}\)$')
+          # Save PR_BODY to a file to avoid issues with multi-line strings
+          echo "$PR_BODY" > pr_body.md
 
-          # If not found, fallback to a generic header
-          if [ -z "$VERSION_HEADER" ]; then
-            VERSION_HEADER="## Release"
-          fi
+          # Extract the first version header with date and link
+          VERSION_HEADER=$(grep -m1 -E '^\[[0-9]+\.[0-9]+\.[0-9]+\]\(.*\) \([0-9]{4}-[0-9]{2}-[0-9]{2}\)$' pr_body.md)
+          [ -z "$VERSION_HEADER" ] && VERSION_HEADER="## Release"
 
-          # Now, for each package section, extract the package name and its markdown list
-          # We'll assume each section starts with the version header, then has bugfix/features sections, etc.
-          # and somewhere in each list, the package name appears as bold or in the list item prefix.
-
-          # This awk script grabs each block starting with a version header, and for each:
-          # - Extracts the package name from the first bold item (**package_name:** or **package_name**:)
-          # - Outputs the block as:
-          #   > package_name
-          #   (then the block content, minus the version header itself)
-
-          echo "$PR_BODY" | awk '
-            BEGIN { block=""; inblock=0; }
+          # Split blocks by version header (exclude the header line itself)
+          awk '
+            BEGIN {block=""; inblock=0;}
             /^\[[0-9]+\.[0-9]+\.[0-9]+\]\(.*\) \([0-9]{4}-[0-9]{2}-[0-9]{2}\)$/ {
-              if (inblock && block != "") {
-                print block
+              if(inblock && block != "") {
+                print block "---BLOCK---"
                 block=""
               }
               inblock=1
               next
             }
-            inblock { block=block $0 "\n" }
-            END { if (inblock && block != "") print block }
-          ' | while read -r block; do
-              # Find the package name from the first bold entry in a list item
-              PKG=$(echo "$block" | grep -m1 -oP '\*\*\K[^*:]+' | sed 's/_/ /g')
-              [ -z "$PKG" ] && PKG="unknown package"
-              # Output blockquote and the block itself
-              echo ""
-              echo "> $PKG"
-              echo "$block" | sed '/^$/d'  # remove blank line at top
-              echo ""
-            done > lists.md
+            inblock {block=block $0 "\n"}
+            END {if(inblock && block != "") print block "---BLOCK---"}
+          ' pr_body.md > blocks.tmp
+
+          # Split each block and process
+          awk -v RS="---BLOCK---\n" 'NF' blocks.tmp | while IFS= read -r block; do
+            # Extract package name from first bolded entry in a list item
+            PKG=$(echo "$block" | grep -m1 -oP '^\s*[*-]\s+\*\*\K[^*:]+' | sed 's/_/ /g')
+            [ -z "$PKG" ] && PKG="unknown package"
+            # Print the block with > package name
+            echo ""
+            echo "> $PKG"
+            echo "$block" | sed '/^$/d'
+            echo ""
+          done > lists.md
 
           # Compose the final release note file
           {
@@ -85,11 +78,9 @@ jobs:
             cat lists.md
           } > release_note.md
 
-          # Print for debug
           echo "====== Final release note ======"
           cat release_note.md
 
-          # Output for next step
           echo "release_note<<EOF" >> $GITHUB_OUTPUT
           cat release_note.md >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
