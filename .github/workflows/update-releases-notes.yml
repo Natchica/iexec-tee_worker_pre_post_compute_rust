@@ -1,0 +1,47 @@
+name: Update Release Notes from PR
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  update-release-notes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install gh cli and jq
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gh jq
+
+      - name: Find latest merged release PR
+        id: find_pr
+        env:
+          GH_TOKEN: ${{ secrets.RELEASE_PLEASE_TOKEN }}
+        run: |
+          PR_NUMBER=$(gh pr list --state merged --label "autorelease: tagged" --json number,mergedAt,headRefName --jq '[.[] | select(.headRefName | test("^release-please--branches--main"))] | sort_by(.mergedAt) | last.number')
+          echo "pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
+
+      - name: Get PR body
+        id: get_body
+        env:
+          GH_TOKEN: ${{ secrets.RELEASE_PLEASE_TOKEN }}
+        run: |
+          PR_NUMBER="${{ steps.find_pr.outputs.pr_number }}"
+          PR_BODY=$(gh pr view "$PR_NUMBER" --json body -q .body)
+          echo "pr_body<<EOF" >> $GITHUB_OUTPUT
+          echo "$PR_BODY" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Update release notes for tag
+        env:
+          GH_TOKEN: ${{ secrets.RELEASE_PLEASE_TOKEN }}
+        run: |
+          gh release edit "${GITHUB_REF#refs/tags/}" --notes "${{ steps.get_body.outputs.pr_body }}"
