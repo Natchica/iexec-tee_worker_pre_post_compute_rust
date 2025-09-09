@@ -19,7 +19,7 @@ pub const DROPBOX_CONTENT_BASE_URL: &str = "https://content.dropboxapi.com";
 /// REST path for the Dropbox "files/upload" endpoint.
 const FILES_UPLOAD_PATH: &str = "/2/files/upload";
 
-/// Service for handling Dropbox file uploads
+/// Service for handling Dropbox file uploads.
 ///
 /// This is a lightweight utility type. Construct with `let service = DropboxService;` and call
 /// [`DropboxService::upload_file`].
