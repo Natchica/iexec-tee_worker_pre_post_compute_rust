@@ -26,4 +26,3 @@ cargo run --bin tee-worker-post-compute
 - `pre-compute/`: Pre-computation logic and binary
 - `post-compute/`: Post-computation logic and binary
 - `shared/`: Common utilities and types used by both compute stages
-- `src/lib.rs`: Minimal workspace placeholder for release management
