@@ -3,7 +3,7 @@
 //! This module provides a small utility for uploading computation results to
 //! Dropbox using the Content API "files/upload" HTTPS endpoint. It focuses on
 //! correctness, explicit error mapping to `ReplicateStatusCause`, and testability
-//! (the base URL is injectable for mocking).
+//! (the base URL is injectable for mocking)
 
 use log::{error, info};
 #[cfg(test)]
