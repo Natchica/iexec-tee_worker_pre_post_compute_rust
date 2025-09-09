@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.2](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.4.1...v0.4.2) (2025-09-09)
+
+
+### Bug Fixes
+
+* **signer:** remove trailing period from documentation comment for signer function ([c462bd2](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/c462bd271ae2969ef042ad11194f940c431b1ed8))
+
 ## [0.4.1](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.4.0...v0.4.1) (2025-09-09)
 
 
