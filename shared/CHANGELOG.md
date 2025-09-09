@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.4.0...v0.4.1) (2025-09-09)
+
+
+### Bug Fixes
+
+* **errors:** remove trailing period from documentation comment for ComputeStage enum ([8e2196c](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/8e2196c0e4d76c8c74a3cc7bfb004b633328539b))
+
 ## [0.4.0](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.3.5...v0.4.0) (2025-09-09)
 
 

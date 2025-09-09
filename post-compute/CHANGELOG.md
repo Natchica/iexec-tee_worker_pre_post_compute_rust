@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.4.0...v0.4.1) (2025-09-09)
+
+
+### Bug Fixes
+
+* **computed_file:** add missing period to documentation comment for computed.json structure ([f3f5939](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/f3f5939a143528dd3a617e1967ac042985828c63))
+
 ## [0.4.0](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.3.6...v0.4.0) (2025-09-09)
 
 
