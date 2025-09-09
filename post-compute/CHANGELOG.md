@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.3.0](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.2.0...v0.3.0) (2025-09-09)
+
+
+### Features
+
+* add documentation comment for computed.json file ([9e1a8b5](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/9e1a8b5d19f1a70d6b7e02bb683d6710924d40cc))
+
+
+### Bug Fixes
+
+* add missing trailing period in documentation comment for computed.json file structure ([f888bf2](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/f888bf2969dedf4b449ba1eeeb5134516a437e66))
+* correct documentation comment for computed.json ([b70492d](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/b70492d250a717ddf801eaf822884e4b945b3e4b))
+* update documentation comment for computed.json file structure to remove trailing period ([7a06669](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/7a06669c2be3d643d0bedf83049ab4d0291977e3))
+
 ## [0.2.0](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.1.0...v0.2.0) (2025-09-09)
 
 

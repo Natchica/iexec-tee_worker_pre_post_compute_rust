@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.1](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.2.0...v0.2.1) (2025-09-09)
+
+
+### Bug Fixes
+
+* add missing trailing period in documentation comment for sign_enclave_challenge_for_stage function ([93699b7](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/93699b740dc431645ecb7b0be08efd723d5244f4))
+* add missing trailing period in documentation comment for sign_enclave_challenge_for_stage function ([48e440f](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/48e440f69b17b3bc82c2bf34d49ce80390155bb7))
+
 ## [0.2.0](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.1.0...v0.2.0) (2025-09-09)
 
 
