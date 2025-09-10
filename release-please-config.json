@@ -5,28 +5,64 @@
   "include-v-in-tag": true,
   "separate-pull-requests": false,
   "release-type": "rust",
-  "changelo-path": "CHANGELOG.md",
-  "changelog-sections": [
-    { "type": "deps", "section": "📦 Dependencies", "hidden": false },
-    { "type": "chore", "section": "🔨 Miscellaneous Chores", "hidden": false }
-  ],
+  "changelog-path": "CHANGELOG.md",
+
   "packages": {
     "post-compute": {
       "component": "post-compute",
-      "package-name": "tee-worker-post-compute"
+      "package-name": "tee-worker-post-compute",
+      "changelog-path": "post-compute/CHANGELOG.md",
+      "extra-files": [
+        {
+          "type": "toml",
+          "path": "post-compute/Cargo.toml",
+          "jsonpath": "$.package.version"
+        }
+      ]
     },
     "pre-compute": {
       "component": "pre-compute",
-      "package-name": "tee-worker-pre-compute"
+      "package-name": "tee-worker-pre-compute",
+      "changelog-path": "pre-compute/CHANGELOG.md",
+      "extra-files": [
+        {
+          "type": "toml",
+          "path": "pre-compute/Cargo.toml",
+          "jsonpath": "$.package.version"
+        }
+      ]
     },
     "shared": {
       "component": "shared",
-      "package-name": "shared"
+      "package-name": "shared",
+      "changelog-path": "shared/CHANGELOG.md",
+      "extra-files": [
+        {
+          "type": "toml",
+          "path": "shared/Cargo.toml",
+          "jsonpath": "$.package.version"
+        }
+      ]
     }
   },
+
   "plugins": [
     {
       "type": "cargo-workspace"
     }
+  ],
+
+  "changelog-sections": [
+    { "type": "feat", "section": "✨ Features", "hidden": false },
+    { "type": "fix", "section": "🐛 Bug Fixes", "hidden": false },
+    { "type": "deps", "section": "📦 Dependencies", "hidden": false },
+    { "type": "refactor", "section": "♻️ Code Refactoring", "hidden": false },
+    { "type": "perf", "section": "⚡ Performance Improvements", "hidden": false },
+    { "type": "chore", "section": "🔨 Miscellaneous Chores", "hidden": false },
+    { "type": "build", "section": "🔧 Build System", "hidden": true },
+    { "type": "ci", "section": "👷 Continuous Integration", "hidden": true },
+    { "type": "docs", "section": "📚 Documentation", "hidden": true },
+    { "type": "style", "section": "💄 Styles", "hidden": true },
+    { "type": "test", "section": "✅ Tests", "hidden": true }
   ]
 }
