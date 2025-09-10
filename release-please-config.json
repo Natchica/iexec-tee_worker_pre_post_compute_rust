@@ -6,6 +6,10 @@
   "separate-pull-requests": false,
   "release-type": "rust",
   "changelo-path": "CHANGELOG.md",
+  "changelog-sections": [
+    { "type": "deps", "section": "📦 Dependencies", "hidden": false },
+    { "type": "chore", "section": "🔨 Miscellaneous Chores", "hidden": false }
+  ],
   "packages": {
     "post-compute": {
       "component": "post-compute",
