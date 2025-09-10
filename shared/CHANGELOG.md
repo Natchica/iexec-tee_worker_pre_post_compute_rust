@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.5.0](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.4.2...v0.5.0) (2025-09-10)
+
+
+### 📦 Dependencies
+
+* **post-compute:** test empty commit detection ([0164cbd](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/0164cbd528c1a3cd75bd45312c3843c3b4a97126))
+* **pre-compute:** test empty commit detection ([472d915](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/commit/472d9153963efbec9e5030bb1d3822fc5aadf839))
+
 ## [0.4.2](https://github.com/Natchica/iexec-tee_worker_pre_post_compute_rust/compare/v0.4.1...v0.4.2) (2025-09-09)
 
 
